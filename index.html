@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de la vie | Visualisez votre existence en semaines</title>
+    <meta name="description" content="Visualisez votre vie en semaines avec Tableau de la vie. Calculez le temps passé à dormir, travailler, étudier et sur les écrans pour mieux comprendre comment vous utilisez votre temps de vie.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/cs.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>🎨 Tableau de la vie</h1>
+        <div class="intro">
+            <p>Visualisez votre vie en semaines et découvrez comment vous utilisez votre temps. Cet outil interactif vous permet de mieux comprendre la répartition de vos activités sur votre durée de vie.</p>
+        </div>
+    </header>
+    
+    <main>
+        <div class="controls">
+            <label for="date-fill">Votre date de naissance :</label>
+            <input type="date" id="date-fill" aria-label="Sélectionnez votre date de naissance">
+            <button id="date-fill-btn" class="btn">Valider</button>
+        </div>
+
+        <div class="grid-wrapper" style="width:100vw; overflow-x:auto; display:flex; justify-content:center;">
+            <div id="grid" aria-label="Grille représentant votre vie en semaines"></div>
+        </div>
+        
+        <div id="life-summary-message" class="message"></div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #000000;"></div>
+                <span>Semaines vécues</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #3498db;"></div>
+                <span>Sommeil</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #e84393;"></div>
+                <span>Temps d'écran</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #fd7e14;"></div>
+                <span>Travail</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #27ae60;"></div>
+                <span>Études</span>
+            </div>
+        </div>
+        
+        <section id="sleep-section" aria-labelledby="sleep-heading">
+            <h2 id="sleep-heading">Temps de sommeil</h2>
+            <div class="category-controls" id="sleep-controls">
+                <label for="sleep-input">Temps de sommeil moyen (par nuit) :</label>
+                <input type="number" id="sleep-input" min="0" max="24" value="8" step="0.5" aria-label="Heures de sommeil par nuit">
+                <button id="sleep-btn" class="btn">Calculer</button>
+            </div>
+            <div id="sleep-grid" class="category-grid" aria-label="Grille représentant le temps de sommeil"></div>
+        </section>
+
+        <section id="screen-section" aria-labelledby="screen-heading">
+            <h2 id="screen-heading">Temps d'écran</h2>
+            <div class="category-controls" id="screen-controls">
+                <label for="screen-input">Temps écran moyen (par jour) :</label>
+                <input type="number" id="screen-input" min="0" max="24" value="4" step="0.5" aria-label="Heures d'écran par jour">
+                <label for="screen-date">Date 1er téléphone :</label>
+                <input type="date" id="screen-date" aria-label="Date de votre premier téléphone">
+                <button id="screen-btn" class="btn">Calculer</button>
+            </div>
+            <div id="screen-grid" class="category-grid" aria-label="Grille représentant le temps d'écran"></div>
+            <div id="screen-message" class="message"></div>
+        </section>
+
+        <section id="work-section" aria-labelledby="work-heading">
+            <h2 id="work-heading">Temps de travail</h2>
+            <div class="category-controls" id="work-controls">
+                <label for="work-input">Heures travail par semaine :</label>
+                <input type="number" id="work-input" min="0" max="168" value="35" step="0.5" aria-label="Heures de travail par semaine">
+                <label for="work-years">Temps (années) :</label>
+                <input type="number" id="work-years" min="0" max="80" value="1" step="0.5" aria-label="Nombre d'années de travail">
+                <button id="work-btn" class="btn">Calculer</button>
+            </div>
+            <div id="work-grid" class="category-grid" aria-label="Grille représentant le temps de travail"></div>
+        </section>
+
+        <section id="study-section" aria-labelledby="study-heading">
+            <h2 id="study-heading">Temps d'étude</h2>
+            <div class="category-controls" id="study-controls">
+                <label for="study-input">Heures d'étude par semaine :</label>
+                <input type="number" id="study-input" min="0" max="168" value="30" step="0.5" aria-label="Heures d'étude par semaine">
+                <label for="study-years">Temps (années) :</label>
+                <input type="number" id="study-years" min="0" max="80" value="18" step="0.5" aria-label="Nombre d'années d'étude">
+                <button id="study-btn" class="btn">Calculer</button>
+            </div>
+            <div id="study-grid" class="category-grid" aria-label="Grille représentant le temps d'étude"></div>
+        </section>
+
+        <section class="faq">
+            <h2>Questions fréquentes</h2>
+            
+            <h3>Qu'est-ce que le Tableau de la vie&nbsp;?</h3>
+            <p>
+                Le Tableau de la vie est un outil de visualisation qui représente votre vie en semaines sous forme de grille. Chaque case correspond à une semaine, chaque ligne comprend 52 cases (soit une année), pour un total de 4160 cases (80 ans × 52 semaines).
+            </p>
+            
+            <h3>Comment les calculs sont-ils effectués&nbsp;?</h3>
+            <p>
+                Les calculs sont basés sur vos saisies. Par exemple, si vous dormez 8 heures par jour, cela représente environ un tiers de votre temps, soit environ un tiers des cases colorées en bleu.
+            </p>
+            
+            <h3>Pourquoi visualiser ma vie en semaines&nbsp;?</h3>
+            <p>
+                Cette visualisation peut vous aider à prendre conscience du temps limité dont nous disposons et de la façon dont nous l'utilisons. C'est un outil de réflexion sur nos priorités et nos choix de vie. Inspiré par "Your Life in Weeks" de Tim Urban, ce site permet de remplir automatiquement le tableau et d'obtenir une vision concrète de la vie que vous avez eue et du temps qu'il vous reste.
+            </p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2025 Tableau de la vie. Tous droits réservés.</p>
+        <p>Contact : <a href="mailto:contact@votredomaine.com">contact@votredomaine.com</a></p>
+    </footer>
+
+    <!-- Bannière cookies RGPD corrigée -->
+    <div id="cookie-banner">
+        <div id="cookie-content">
+            <p>
+                Ce site utilise des cookies pour améliorer votre expérience.<br>
+                <a href="/politique-cookies.html">En savoir plus</a>
+            </p>
+            <button id="accept-cookies" class="btn">Accepter</button>
+            <button id="decline-cookies" class="btn">Refuser</button>
+        </div>
+    </div>
+    <script src="JS/js.js"></script>
+</body>
+</html>
