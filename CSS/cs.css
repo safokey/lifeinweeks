@@ -14,7 +14,6 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            touch-action: none;
         }
 
         h1, h2 {
